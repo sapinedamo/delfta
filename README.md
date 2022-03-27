@@ -14,6 +14,51 @@ The DelFTa application is an easy-to-use, open-source toolbox for predicting qua
 
 While the Linux (and Windows, through WSL) installations fully support GPU-acceleration via cudatoolkit, only CPU inference is currently available under Mac OS. We currently support Python 3.7 and 3.8 builds.
 
+## Pre installation
+
+On mac install cmake:
+```bash
+brew install cmake
+```
+
+Install eigen:
+```bash
+git clone https://gitlab.com/libeigen/eigen.git
+cd eigen
+mkdir build
+cd build
+cmake ..
+make -j4
+make install
+```
+
+Install SWIG:
+```bash
+brew install swig
+```
+
+Install openbabel with python binding:
+```bash
+git clone https://github.com/openbabel/openbabel.git
+cd openbabel
+mkdir build
+cd build
+cmake -DRUN_SWIG=ON -DPYTHON_BINDINGS=ON ..
+make -j4
+make test
+sudo make install
+```
+add this line into your ~/.bashrc:
+```bash
+export PYTHONPATH=$PYTHONPATH:your/location/in/here/openbabel
+source ~/.bashrc
+```
+
+Install openbabel with conda:
+```bash
+conda install -c openbabel openbabel
+```
+
 ### Installation via conda
 
 We recommend and support installation via the [conda](https://docs.conda.io/en/latest/miniconda.html) package manager, and that a fresh environment is created beforehand. Then fetch the package from our channel:
